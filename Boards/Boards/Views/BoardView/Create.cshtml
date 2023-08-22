@@ -4,4 +4,52 @@
 *@
 @{
 }
-<h4>Look at my cool Boards Wich has the name @Model.Name,@Model.Length, @Model.Width, @Model.Thickness, @Model.Volume, @Model.Type, @Model.Price, @Model.Equipment</h4>
+
+<div class="row">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">Create new Board </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Board Name</label>
+                    <input asp-for="Name" type="text" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Length</label>
+                    <input asp-for="Length" type="number" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Width</label>
+                    <input asp-for="Width" type="number" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Thickness</label>
+                    <input asp-for="Thickness" type="number" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Volume</label>
+                    <input asp-for="Volume" type="number" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Type</label>
+                    <input asp-for="Type" type="text" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <input asp-for="Price" type="number" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Equipment</label>
+                    <input asp-for="Equipment" type="text" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</div>
