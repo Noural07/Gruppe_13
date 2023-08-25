@@ -1,4 +1,6 @@
-﻿namespace Boards.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Boards.Models
 {
     public class Board
     {
