@@ -5,10 +5,9 @@
 }
 
 <h1>Create</h1>
-
 <h4>Board</h4>
-<hr />
 <div class="row">
+
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -52,11 +51,54 @@
                 <input asp-for="Equipment" class="form-control" />
                 <span asp-validation-for="Equipment" class="text-danger"></span>
             </div>
+          @*   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <main class="main_full">
+                <div class="container">
+                    <div class="panel">
+                        <div class="button_outer">
+                            <div class="btn_upload">
+                                <input type="file" id="upload_file" name="">
+                                upload et billede
+                            </div>
+                            <div class="processing_bar"></div>
+                            <div class="success_box"></div>
+                        </div>
+                    </div>
+                    <div class="error_msg"></div>
+                    <div class="uploaded_file_view" id="uploaded_view">
+                        <span class="file_remove">X</span>
+                    </div>
+                </div>
+            </main> *@
+            <form id="imageForm" enctype="multipart/form-data">
+                <input type="file" name="image" id="imageInput">
+                <button type="button" onclick="uploadImage()">Upload</button>
+            </form>
+
+            <script>
+                function uploadImage() {
+                    const formData = new FormData();
+                    formData.append('image', document.getElementById('imageInput').files[0]);
+
+                    fetch('/upload', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data.message);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            </script>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
+    
 </div>
 
 <div>
