@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Gruppe_13\\Boards\\Boards\\Boards.csproj": {}
+    "C:\\Users\\suner\\OneDrive\\Skrivebord\\Gruppe_13\\Boards\\Boards\\Boards.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Gruppe_13\\Boards\\Boards\\Boards.csproj": {
+    "C:\\Users\\suner\\OneDrive\\Skrivebord\\Gruppe_13\\Boards\\Boards\\Boards.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
+        "projectUniqueName": "C:\\Users\\suner\\OneDrive\\Skrivebord\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
         "projectName": "Boards",
-        "projectPath": "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
-        "packagesPath": "C:\\Users\\Farhad Ba-Ali\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Gruppe_13\\Boards\\Boards\\obj\\",
+        "projectPath": "C:\\Users\\suner\\OneDrive\\Skrivebord\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
+        "packagesPath": "C:\\Users\\suner\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suner\\OneDrive\\Skrivebord\\Gruppe_13\\Boards\\Boards\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Farhad Ba-Ali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\suner\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -59,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
