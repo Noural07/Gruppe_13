@@ -12,6 +12,7 @@ namespace Boards.Data
         public MvcBoardsContext (DbContextOptions<MvcBoardsContext> options)
             : base(options)
         {
+            
         }
 
         public DbSet<Boards.Models.Board> Board { get; set; } = default!;
