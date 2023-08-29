@@ -9,65 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Boards
 build_property.RootNamespace = Boards
-build_property.ProjectDir = C:\Users\suner\OneDrive\Skrivebord\Gruppe_13\Boards\Boards\
+build_property.ProjectDir = C:\Users\M. Noureddin Bay\OneDrive - UCL Erhvervsakademi og Professionshøjskole\3. semster\Gruppe_13\Boards\Boards\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\suner\OneDrive\Skrivebord\Gruppe_13\Boards\Boards
+build_property.MSBuildProjectDirectory = C:\Users\M. Noureddin Bay\OneDrive - UCL Erhvervsakademi og Professionshøjskole\3. semster\Gruppe_13\Boards\Boards
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Create.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Boards/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Delete.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Boards/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Details.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Boards/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Edit.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Boards/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Index.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Boards/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/BoardView/Create.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/BoardView/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRWaWV3XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/BoardView/HomePage.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/BoardView/HomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRWaWV3XEhvbWVQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Home/Index.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Home/Privacy.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Shared/Error.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/_ViewImports.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/_ViewStart.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Shared/_Layout.cshtml]
+[C:/Users/M. Noureddin Bay/OneDrive - UCL Erhvervsakademi og Professionshøjskole/3. semster/Gruppe_13/Boards/Boards/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-g47zs21oov
