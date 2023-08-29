@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Boards</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -46,22 +46,22 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Length)
+                @Html.DisplayFor(modelItem => item.Length) feet
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Width)
+                @Html.DisplayFor(modelItem => item.Width) inches
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Thickness)
+                @Html.DisplayFor(modelItem => item.Thickness) inches
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Volume)
+                @Html.DisplayFor(modelItem => item.Volume) L
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.Price) €
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Equipment)

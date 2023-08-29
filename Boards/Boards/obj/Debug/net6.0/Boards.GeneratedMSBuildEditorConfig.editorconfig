@@ -16,6 +16,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\suner\OneDrive\Skrivebord\Gruppe_13\Boards\Boards
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/Boards/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/suner/OneDrive/Skrivebord/Gruppe_13/Boards/Boards/Views/BoardView/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRWaWV3XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
