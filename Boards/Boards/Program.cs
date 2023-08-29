@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Boards.Data;
+using Boards.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MvcBoardsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MvcBoardsContext") ?? throw new InvalidOperationException("Connection string 'MvcBoardsContext' not found.")));
@@ -9,6 +11,13 @@ builder.Services.AddDbContext<MvcBoardsContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -27,6 +36,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Boards}/{action=Index}/{id?}");
 
 app.Run();
