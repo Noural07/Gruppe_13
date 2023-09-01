@@ -20,11 +20,60 @@ namespace Boards.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+       string sortOrder,
+       string currentFilter,
+       string searchString,
+       int? pageNumber)
         {
-              return _context.Board != null ? 
-                          View(await _context.Board.ToListAsync()) :
-                          Problem("Entity set 'MvcBoardsContext.Board'  is null.");
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["LengthSortParm"] = sortOrder == "Length" ? "length_desc" : "Length";
+            ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var Boards = from s in _context.Board
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Boards = Boards.Where(s => s.Equipment.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "Name_desc":
+                    Boards = Boards.OrderByDescending(s => s.Name);
+                    break;
+                case "Type_desc":
+                    Boards = Boards.OrderByDescending(s => s.Type);
+                    break;
+                case "Type":
+                    Boards = Boards.OrderBy(s => s.Type);
+                    break;
+                case "Length_desc":
+                    Boards = Boards.OrderByDescending(s => s.Length);
+                    break;
+                case "Length":
+
+                    Boards = Boards.OrderBy(s => s.Length);
+                    break;
+                default:
+                    Boards = Boards.OrderBy(s => s.Name);
+                    break;
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Board>.CreateAsync(Boards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Boards/Details/5
