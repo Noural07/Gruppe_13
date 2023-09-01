@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Boards.Data;
 using Boards.Models;
+using System.Drawing;
 
 namespace Boards.Controllers
 {
+    
     public class BoardsController : Controller
+        
     {
+        
         private readonly MvcBoardsContext _context;
 
         public BoardsController(MvcBoardsContext context)
@@ -103,7 +107,7 @@ namespace Boards.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<IActionResult> Create([Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment,Image")] Board board)
         {
             if (ModelState.IsValid)
             {
@@ -113,6 +117,7 @@ namespace Boards.Controllers
             }
             return View(board);
         }
+
 
         // GET: Boards/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -135,7 +140,7 @@ namespace Boards.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment,Image")] Board board)
         {
             if (id != board.ID)
             {
@@ -206,5 +211,6 @@ namespace Boards.Controllers
         {
           return (_context.Board?.Any(e => e.ID == id)).GetValueOrDefault();
         }
+        
     }
 }

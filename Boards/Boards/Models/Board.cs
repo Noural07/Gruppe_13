@@ -13,5 +13,8 @@ namespace Boards.Models
         public string Type { get; set; }
         public Decimal Price { get; set; }
         public string? Equipment { get; set; }
+        [Url(ErrorMessage = "Please insert an url")]
+        public string? Image { get; set; }
+        
     }
 }

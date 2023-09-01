@@ -45,16 +45,16 @@ namespace Boards.Models
                     },
 
                       new Board
-                    {
-                        Name = "The Golden Ratio",
-                        Length = 6.3,
-                        Width = 21.85,
-                        Thickness = 2.9,
-                        Volume = 43.22,
-                        Type = "Funboard",
-                        Price = 695M,
-                        Equipment = ""
-                    },
+                      {
+                          Name = "The Golden Ratio",
+                          Length = 6.3,
+                          Width = 21.85,
+                          Thickness = 2.9,
+                          Volume = 43.22,
+                          Type = "Funboard",
+                          Price = 695M,
+                          Equipment = ""
+                      },
 
                     new Board
                     {
@@ -70,62 +70,62 @@ namespace Boards.Models
 
                     new Board
                     {
-                         Name = "The Emerald Glider",
-                         Length = 9.2,
-                         Width = 22.8,
-                         Thickness = 2.8,
-                         Volume = 65.4,
-                         Type = "Longboard",
-                         Price = 895M,
-                         Equipment = ""
+                        Name = "The Emerald Glider",
+                        Length = 9.2,
+                        Width = 22.8,
+                        Thickness = 2.8,
+                        Volume = 65.4,
+                        Type = "Longboard",
+                        Price = 895M,
+                        Equipment = ""
                     },
 
                     new Board
                     {
-                          Name = "The Bomb",
-                          Length = 5.5,
-                          Width = 21,
-                          Thickness = 2.5,
-                          Volume = 33.7,
-                          Type = "Shortboard",
-                          Price = 645M,
-                          Equipment = ""
+                        Name = "The Bomb",
+                        Length = 5.5,
+                        Width = 21,
+                        Thickness = 2.5,
+                        Volume = 33.7,
+                        Type = "Shortboard",
+                        Price = 645M,
+                        Equipment = ""
                     },
 
                     new Board
                     {
-                           Name = "Walden Magic",
-                           Length = 9.6,
-                           Width = 19.4,
-                           Thickness = 3,
-                           Volume = 80,
-                           Type = "Longboard",
-                           Price = 1025M,
-                       Equipment = ""
-                    },
-
-                    new Board
-                     {
-                          Name = "Naish One",
-                          Length = 12.6,
-                          Width = 30,
-                          Thickness = 6,
-                          Volume = 301,
-                          Type = "SUP",
-                          Price = 854M,
-                          Equipment = "Paddle"
+                        Name = "Walden Magic",
+                        Length = 9.6,
+                        Width = 19.4,
+                        Thickness = 3,
+                        Volume = 80,
+                        Type = "Longboard",
+                        Price = 1025M,
+                        Equipment = ""
                     },
 
                     new Board
                     {
-                          Name = "Six Tourer",
-                          Length = 11.6,
-                          Width = 32,
-                          Thickness = 6,
-                          Volume = 270,
-                          Type = "SUP",
-                          Price = 611M,
-                          Equipment = "Fin, Paddle, Pump, Leash"
+                        Name = "Naish One",
+                        Length = 12.6,
+                        Width = 30,
+                        Thickness = 6,
+                        Volume = 301,
+                        Type = "SUP",
+                        Price = 854M,
+                        Equipment = "Paddle"
+                    },
+
+                    new Board
+                    {
+                        Name = "Six Tourer",
+                        Length = 11.6,
+                        Width = 32,
+                        Thickness = 6,
+                        Volume = 270,
+                        Type = "SUP",
+                        Price = 611M,
+                        Equipment = "Fin, Paddle, Pump, Leash"
                     },
 
 

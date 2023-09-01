@@ -30,61 +30,69 @@
 
             </th>
             <th>
-                Width 
+                Width
             </th>
             <th>
                 Thickness
             </th>
-      
+
             <th>
-               Volume
+                Volume
             </th>
             <th>
                 <a asp-action="Index" style="color:#12d6e3" asp-route-sortOrder="@ViewData["TypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Type</a>
             </th>
             <th>
-               Price
+                Price
             </th>
             <th>
-               Equipment
+                Equipment
+            </th>
+            <th>
+                Image
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Length) feet
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Width) inches
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thickness) inches
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Volume) L
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price) €
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Equipment)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Length) feet
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Width) inches
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thickness) inches
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volume) L
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price) €
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Equipment)
+                </td>
+                <td>
+                   
+                    <img src="@item.Image" alt="None item" width="64" height="64">
+                </td>
+                <td>
                     <a asp-action="Edit" style="color:#12d6e3" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Details" style="color:#12d6e3" asp-route-id="@item.ID"> Details </a> |
                     <a asp-action="Delete" style="color:#12d6e3" asp-route-id="@item.ID"> Delete </a>
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>@{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
