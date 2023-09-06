@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Boards.Data;
 using Boards.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Boards.Controllers
 {
@@ -129,6 +130,10 @@ namespace Boards.Controllers
             }
             return View(board);
         }
+
+        private readonly UserManager<DefaultUser> _userManager;
+
+        
 
         // POST: Boards/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.

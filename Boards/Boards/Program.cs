@@ -1,41 +1,48 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Boards.Data;
 using Boards.Models;
+using Boards.ViewModels;
+using Boards;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<MvcBoardsContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcBoardsContext") ?? throw new InvalidOperationException("Connection string 'MvcBoardsContext' not found.")));
-
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
+namespace Boards
 {
-    var services = scope.ServiceProvider;
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = CreateHostBuilder(args).Build();
 
-    SeedData.Initialize(services);
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    // Initialize Roles and Users. This one will create a user with an Admin-role aswell as a separate User-role. See UserRoleInitializer.cs in Models
+                    UserRoleInitializer.InitializeAsync(services).Wait();
+                    // Seed book data
+                    SeedData.Initialize(services);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occured while attempting to seed the database");
+                }
+            }
+
+            host.Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
 }
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Boards}/{action=Index}/{id?}");
-
-app.Run();
