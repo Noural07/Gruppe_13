@@ -13,5 +13,7 @@ namespace Boards.Models
         public string ?Type { get; set; }
         public Decimal Price { get; set; }
         public string? Equipment { get; set; }
+
+        //public bool Reserved { get; set; }
     }
 }

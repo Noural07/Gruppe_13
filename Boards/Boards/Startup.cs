@@ -39,7 +39,7 @@ namespace Boards
             services.AddDbContext<MvcBoardsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MvcBoardsContext")));
 
-            services.AddDefaultIdentity<DefaultUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<DefaultUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<MvcBoardsContext>();
 
