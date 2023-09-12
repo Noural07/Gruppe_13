@@ -44,8 +44,7 @@ namespace Boards.Controllers
                          select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                Boards = Boards.Where(s => s.Equipment.Contains(searchString)
-                                        || s.Equipment.Contains(searchString));
+                Boards = Boards.Where(s => s.Equipment.Contains(searchString));
             }
             switch (sortOrder)
             {
@@ -70,6 +69,8 @@ namespace Boards.Controllers
                     break;
 
             }
+            Boards = Boards.OrderBy(s => s.Reserved);
+
             int pageSize = 5;
             return View(await PaginatedList<Board>.CreateAsync(Boards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
@@ -92,12 +93,13 @@ namespace Boards.Controllers
             return View(board);
         }
 
-
+        
 
 
         // GET: ViewUser/Edit/5
         public async Task<IActionResult> Rent(int? id)
         {
+            
             if (id == null || _context.Board == null)
             {
                 return NotFound();
@@ -108,43 +110,52 @@ namespace Boards.Controllers
             {
                 return NotFound();
             }
+            else  
+                    {
+                        board.Reserved= true;
+                        _context.SaveChanges();
+                    }
             return RedirectToAction(nameof(Index));
+
         }
+
+        
+
 
         // POST: ViewUser/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Rent(int id, [Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
-        {
-            if (id != board.ID)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Rent(int id, [Bind("ID, Reserved")] Board board)
+        //{
+        //    if (id != board.ID)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(board);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BoardExists(board.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(board);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(board);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!BoardExists(board.ID))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(board);
+        //}
         private bool BoardExists(int id)
         {
             return (_context.Board?.Any(e => e.ID == id)).GetValueOrDefault();

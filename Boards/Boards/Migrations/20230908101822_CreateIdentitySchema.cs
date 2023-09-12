@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BookStore.Migrations
+#nullable disable
+
+namespace Boards.Migrations
 {
-    public partial class identityAdded : Migration
+    public partial class CreateIdentitySchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +46,28 @@ namespace BookStore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Board",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Length = table.Column<double>(type: "float", nullable: false),
+                    Width = table.Column<double>(type: "float", nullable: false),
+                    Thickness = table.Column<double>(type: "float", nullable: false),
+                    Volume = table.Column<double>(type: "float", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Equipment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Reserved = table.Column<bool>(type: "bit", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Board", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,6 +232,9 @@ namespace BookStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Board");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -25,12 +25,14 @@ namespace Boards.Controllers
             string sortOrder,
             string currentFilter,
             string searchString,
+            
             int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["TypeSortParm"] = sortOrder == "Type" ? "Type_desc" : "Type";
             ViewData["LengthSortParm"] = sortOrder == "Length" ? "Length_desc" : "Length";
+            ViewData["ReservesSortParm"] = sortOrder == "Reserved" ? "Reserved_desc" : "Reserved";
             if (searchString != null)
             {
                 pageNumber = 1;
@@ -45,8 +47,7 @@ namespace Boards.Controllers
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-               Boards = Boards.Where(s => s.Equipment.Contains(searchString)
-                                       || s.Equipment.Contains(searchString));
+               Boards = Boards.Where(s => s.Equipment.Contains(searchString));
             }
             switch (sortOrder)
             {
@@ -66,6 +67,14 @@ namespace Boards.Controllers
 
                     Boards = Boards.OrderBy(s => s.Length);
                     break;
+                case "Reserved_desc":
+                    Boards = Boards.OrderByDescending(s => !s.Reserved);
+                    break;
+                case "Reserved":
+
+                    Boards = Boards.OrderBy(s => !s.Reserved);
+                    break;
+
                 default:
                     Boards = Boards.OrderBy(s => s.Name);
                     break;
@@ -104,7 +113,7 @@ namespace Boards.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<IActionResult> Create([Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment,Image")] Board board)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +149,7 @@ namespace Boards.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Length,Width,Thickness,Volume,Type,Price,Equipment,Image")] Board board)
         {
             if (id != board.ID)
             {
