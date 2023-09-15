@@ -48,9 +48,32 @@ namespace Boards.Models
                 {
                     userManager.AddToRoleAsync(user, "Admin").Wait();
                 }
-            }
 
+            }
+            var email1 = "admin2@site.com";
+            var password1 = "Qwerty124!";
+            if (userManager.FindByEmailAsync(email1).Result == null)
+            {
+                DefaultUser user = new()
+                {
+                    Email = email1,
+                    UserName = email1,
+                    //FirstName = "Admin",
+                    //LastName = "Adminsson",
+                    ////Address = "Adstreet 3",
+                    ////City = "Big City",
+                    //ZipCode = "12345"
+                };
+
+                IdentityResult result = userManager.CreateAsync(user, password1).Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "Admin").Wait();
+                }
+
+            }
         }
     }
-}
 
+}
