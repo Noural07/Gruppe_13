@@ -154,7 +154,7 @@ namespace Boards.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Booked");
+                ModelState.AddModelError(string.Empty, "The chosen board is already booked");
                 
             }
             
