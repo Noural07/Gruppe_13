@@ -89,7 +89,9 @@
                         <img src="@item.Image" alt="None item" width="64" height="64">
                     </td>
                     <td>
-                        <a asp-action="Details" style="color:#12d6e3" asp-route-id="@item.ID"> Details </a> 
+                        <a asp-action="Details" style="color:#12d6e3" asp-route-id="@item.ID"> Details </a>
+                        <a asp-action="Rent" style="color:red" asp-route-id="@item.ID"> Rent </a>
+
                     </td>
                 </tr>
             }

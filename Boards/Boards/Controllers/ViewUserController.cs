@@ -110,52 +110,106 @@ namespace Boards.Controllers
             {
                 return NotFound();
             }
-            else  
-                    {
-                        board.Reserved= true;
-                        _context.SaveChanges();
-                    }
-            return RedirectToAction(nameof(Index));
+            //else  
+            //        {
+            //            board.Reserved= true;
+            //            _context.SaveChanges();
+            //        }
+
+            return View(board);
 
         }
 
-        
 
 
-        // POST: ViewUser/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Rent(int id, [Bind("ID, Reserved")] Board board)
-        //{
-        //    if (id != board.ID)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(board);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!BoardExists(board.ID))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(board);
-        //}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Rent(int? id, byte[] rowVersion)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var boardToUpdate = await _context.Board.FirstOrDefaultAsync(m => m.ID == id);
+
+            if (boardToUpdate == null)
+            {
+                Board deletedBoard = new Board();
+                await TryUpdateModelAsync(deletedBoard);
+                ModelState.AddModelError(string.Empty,
+                    "Unable to save changes. The department was deleted by another user.");
+
+                return View(deletedBoard);
+            }
+
+            _context.Entry(boardToUpdate).Property("RowVersion").OriginalValue = rowVersion;
+            if(boardToUpdate.Reserved == false)
+            {
+                boardToUpdate.Reserved = true;
+
+
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "The chosen board is already booked");
+                
+            }
+            
+            if (await TryUpdateModelAsync<Board>(
+                boardToUpdate,
+                "",
+                s => s.StartDate, s => s.EndDate, s => s.RowVersion))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var exceptionEntry = ex.Entries.Single();
+                    var clientValues = (Board)exceptionEntry.Entity;
+                    var databaseEntry = exceptionEntry.GetDatabaseValues();
+                    if (databaseEntry == null)
+                    {
+                        ModelState.AddModelError(string.Empty,
+                            "Unable to save changes. The department was deleted by another user.");
+                    }
+                    else
+                    {
+                        var databaseValues = (Board)databaseEntry.ToObject();
+
+                        if (databaseValues.StartDate != clientValues.StartDate)
+                        {
+                            ModelState.AddModelError("StartDate", $"Current value: {databaseValues.StartDate}");
+                        }
+                        if (databaseValues.EndDate != clientValues.EndDate)
+                        {
+                            ModelState.AddModelError("EndDate", $"Current value: {databaseValues.EndDate}");
+                        }
+                        if (databaseValues.RowVersion != clientValues.RowVersion)
+                        {
+                            ModelState.AddModelError("RowVersion", $"Current value: {databaseValues.RowVersion}");
+                        }
+
+
+                        ModelState.AddModelError(string.Empty, "The record you attempted to edit "
+                                + "was modified by another user after you got the original value. The "
+                                + "edit operation was canceled and the current values in the database "
+                                + "have been displayed. If you still want to edit this record, click "
+                                + "the Save button again. Otherwise click the Back to List hyperlink.");
+                        boardToUpdate.RowVersion = (byte[])databaseValues.RowVersion;
+                        ModelState.Remove("RowVersion");
+                        
+                    }
+                }
+            }
+
+            return View(boardToUpdate);
+        }
         private bool BoardExists(int id)
         {
             return (_context.Board?.Any(e => e.ID == id)).GetValueOrDefault();
