@@ -30,6 +30,10 @@ namespace Boards.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<DateTime?>("EndDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Equipment")
                         .HasColumnType("nvarchar(max)");
 
@@ -47,6 +51,16 @@ namespace Boards.Migrations
 
                     b.Property<bool>("Reserved")
                         .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime?>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Thickness")
                         .HasColumnType("float");

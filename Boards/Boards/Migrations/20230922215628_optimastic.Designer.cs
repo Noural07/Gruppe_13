@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Boards.Migrations
 {
     [DbContext(typeof(MvcBoardsContext))]
-    [Migration("20230908101822_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20230922215628_optimastic")]
+    partial class optimastic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,10 @@ namespace Boards.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<DateTime?>("EndDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Equipment")
                         .HasColumnType("nvarchar(max)");
 
@@ -49,6 +53,16 @@ namespace Boards.Migrations
 
                     b.Property<bool>("Reserved")
                         .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime?>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Thickness")
                         .HasColumnType("float");
