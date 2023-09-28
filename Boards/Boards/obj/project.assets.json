@@ -11533,19 +11533,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Farhad Ba-Ali\\.nuget\\packages\\": {}
+    "C:\\Users\\M. Noureddin Bay\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Programmering 2\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
+      "projectUniqueName": "C:\\Users\\M. Noureddin Bay\\Desktop\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
       "projectName": "Boards",
-      "projectPath": "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Programmering 2\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
-      "packagesPath": "C:\\Users\\Farhad Ba-Ali\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Farhad Ba-Ali\\OneDrive\\UCL_datamatiker\\3. Semester\\Programmering 2\\Gruppe_13\\Boards\\Boards\\obj\\",
+      "projectPath": "C:\\Users\\M. Noureddin Bay\\Desktop\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
+      "packagesPath": "C:\\Users\\M. Noureddin Bay\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\M. Noureddin Bay\\Desktop\\Gruppe_13\\Boards\\Boards\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Farhad Ba-Ali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\M. Noureddin Bay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11553,6 +11558,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
