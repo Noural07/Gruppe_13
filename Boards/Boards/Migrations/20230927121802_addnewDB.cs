@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Boards.Migrations
 {
-    public partial class optimastic : Migration
+    public partial class addnewDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
