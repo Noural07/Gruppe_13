@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boards", "Boards\Boards.csproj", "{8A1C7E63-9F7A-4D92-8C73-ED8293A2196F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boards", "Boards\Boards.csproj", "{8A1C7E63-9F7A-4D92-8C73-ED8293A2196F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardsAPI", "BoardsAPI\BoardsAPI.csproj", "{FE60EFA2-F473-49AB-B66F-1613633CD321}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8A1C7E63-9F7A-4D92-8C73-ED8293A2196F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A1C7E63-9F7A-4D92-8C73-ED8293A2196F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A1C7E63-9F7A-4D92-8C73-ED8293A2196F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE60EFA2-F473-49AB-B66F-1613633CD321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE60EFA2-F473-49AB-B66F-1613633CD321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE60EFA2-F473-49AB-B66F-1613633CD321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE60EFA2-F473-49AB-B66F-1613633CD321}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

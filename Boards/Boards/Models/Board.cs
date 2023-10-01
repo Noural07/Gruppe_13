@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Boards.Models
 {
@@ -11,6 +13,9 @@ namespace Boards.Models
         public double Thickness { get; set; }
         public double Volume { get; set; }
         public string ?Type { get; set; }
+        [Required]
+        [Display(Name = "Price (€)")]
+        [Column(TypeName = "decimal(18,2)")]
         public Decimal Price { get; set; }
         public string? Equipment { get; set; }
         public bool Reserved { get; set; }

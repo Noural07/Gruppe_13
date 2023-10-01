@@ -15,9 +15,6 @@ namespace Boards.Data
         {
             
         }
-
-
-
-        public DbSet<Boards.Models.Board> Board { get; set; } = default!;
+        public DbSet<Board> Board { get; set; } = default!;
     }
 }
