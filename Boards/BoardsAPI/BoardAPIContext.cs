@@ -10,6 +10,12 @@ namespace BoardsAPI
     {
         public BoardAPIContext(DbContextOptions<BoardAPIContext> options): base(options){}
 
-        public DbSet<Board> boards { get; set; } = default!;
+        public DbSet<Board> Board { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {  
+            modelBuilder.Entity<Board>().ToTable("Board");
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

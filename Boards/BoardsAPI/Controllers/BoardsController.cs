@@ -26,21 +26,21 @@ namespace BoardsAPI.Controllers
 
         // GET: api/Boards
         [HttpGet]
-        [Route("GetAllboard")]
-        public IEnumerable<Board> GetAllboards()
+        [Route("GetAllBoards")]
+        public IEnumerable<Board> GetAllBoards()
         {
 
-            return _context.boards.ToArray();
+            return _context.Board.ToArray();
         }
 
        
-        [HttpGet("GetBoard")]
+        [HttpGet("GetBoard/{id}")]
         public Board GetBoard(int id)
         {
 
             Board result = null;
             
-           var resultOfFindMethod = _context.boards.Find(id);
+           var resultOfFindMethod = _context.Board.Find(id);
 
             if (id == resultOfFindMethod.ID) 
             {
@@ -89,8 +89,92 @@ namespace BoardsAPI.Controllers
         // POST: api/Boards
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Route("RentBoard")]
-        public async Task<ActionResult<Board>> RentBoard()
+        [Route("RentBoard/{id}")]
+        public async Task<ActionResult<Board>> RentBoard(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var boardToUpdate = await _context.Board.FirstOrDefaultAsync(m => m.ID == id);
+
+            if (boardToUpdate == null)
+            {
+                Board deletedBoard = new Board();
+                await TryUpdateModelAsync(deletedBoard);
+                ModelState.AddModelError(string.Empty,
+                    "Unable to save changes. The department was deleted by another user.");
+
+                return Ok(deletedBoard);
+            }
+
+            
+            if (boardToUpdate.Reserved == false)
+            {
+                boardToUpdate.Reserved = true;
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "The chosen board is already booked");
+            }
+
+            if (await TryUpdateModelAsync<Board>(
+                boardToUpdate,
+                "",
+                s => s.StartDate, s => s.EndDate))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                   
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    // Resten af din eksisterende kode for fejlhåndtering
+                }
+            }
+
+            return Ok(boardToUpdate);
+
+            //if (_context.Board == null)
+            //    return NotFound();
+
+            //if (ModelState.IsValid)
+            //{
+            //    var surfboard = await _context.Board.FindAsync(board.ID);
+            //    if (surfboard == null)
+            //    {
+            //        return NotFound();
+            //    }
+
+
+            //    // Create a new Rent object
+            //    var rent = new Board
+            //    {
+            //        StartDate = board.StartDate,
+            //        EndDate = board.EndDate,
+            //        ID = surfboard.ID,
+
+            //    };
+
+            //    _context.Add(rent);
+            //    await _context.SaveChangesAsync();
+
+            //    return Ok(nameof(Index));
+            //}
+            //else
+            //{
+            //    var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
+            //}
+
+            //return Ok(board);
+        }
+
+
+        [HttpPost]
+        [Route("RentBoardWithID")]
+        public async Task<ActionResult<Board>> RentBoardWithID(int id)
         {
             Board board = new Board();
 
@@ -101,9 +185,9 @@ namespace BoardsAPI.Controllers
             }
             if (ModelState.IsValid)
             {
-                foreach (Board surfboard in _context.boards)
+                foreach (Board surfboard in _context.Board)
                 {
-                    if (board.ID == board.ID)
+                    if (id == surfboard.ID)
                     {
                         board.Reserved = true;
                         break;
@@ -127,17 +211,17 @@ namespace BoardsAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBoard(int id)
         {
-            if (_context.boards == null)
+            if (_context.Board == null)
             {
                 return NotFound();
             }
-            var board = await _context.boards.FindAsync(id);
+            var board = await _context.Board.FindAsync(id);
             if (board == null)
             {
                 return NotFound();
             }
 
-            _context.boards.Remove(board);
+            _context.Board.Remove(board);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -145,7 +229,7 @@ namespace BoardsAPI.Controllers
 
         private bool BoardExists(int id)
         {
-            return (_context.boards?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Board?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

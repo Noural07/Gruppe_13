@@ -95,17 +95,13 @@ namespace Boards.Controllers
 
             return View(board);
         }
-
-
         public async Task<IActionResult> Rent(int? id)
         {
-   
-
             // Create HttpClient
             using HttpClient client = new HttpClient();
 
             // Send a POST request to the API
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7292/api//");
+            HttpResponseMessage response = await client.GetAsync($"https://localhost:7292/api/Boards/RentBoard");
             // Get the response message from the API
             var jsonresponse = await response.Content.ReadAsStringAsync();
 
@@ -117,7 +113,7 @@ namespace Boards.Controllers
                
 
                 // Return a view or message as needed
-                return View(); // You may want to return a different view or message here
+                return View(response); // You may want to return a different view or message here
             
            
         }
