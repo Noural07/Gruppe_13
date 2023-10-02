@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Boards.Data;
 using Boards.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Text.Json;
+using Boards.Models;
 
 namespace Boards.Controllers
 {
@@ -92,40 +95,57 @@ namespace Boards.Controllers
 
             return View(board);
         }
-
-        
-
-
-        // GET: ViewUser/Edit/5
         public async Task<IActionResult> Rent(int? id)
         {
+            // Create HttpClient
+            using HttpClient client = new HttpClient();
+
+            // Send a POST request to the API
+            HttpResponseMessage response = await client.GetAsync($"https://localhost:7292/api/Boards/RentBoard");
+            // Get the response message from the API
+            var jsonresponse = await response.Content.ReadAsStringAsync();
+
+            var rootObject = JsonSerializer.Deserialize<Board>(jsonresponse);
+            // Update the local board entity (if necessary)
+           
+                await _context.SaveChangesAsync();
+
+               
+
+                // Return a view or message as needed
+                return View(response); // You may want to return a different view or message here
             
-            if (id == null || _context.Board == null)
-            {
-                return NotFound();
-            }
-
-            var board = await _context.Board.FindAsync(id);
-            if (board == null)
-            {
-                return NotFound();
-            }
-            //else  
-            //        {
-            //            board.Reserved= true;
-            //            _context.SaveChanges();
-            //        }
-
-            return View(board);
-
+           
         }
 
 
+        //// GET: ViewUser/Edit/5
+        //public async Task<IActionResult> Rent(int? id)
+        //{
 
+        //    if (id == null || _context.Board == null)
+        //    {
+        //        return NotFound();
+        //    }
 
+        //    var board = await _context.Board.FindAsync(id);
+        //    if (board == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //else  
+        //    //        {
+        //    //            board.Reserved= true;
+        //    //            _context.SaveChanges();
+        //    //        }
+
+        //    return View(board);
+
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize] // Tilføj denne attribut for at kræve, at brugeren er logget ind
         public async Task<IActionResult> Rent(int? id, byte[] rowVersion)
         {
             if (id == null)
@@ -146,18 +166,15 @@ namespace Boards.Controllers
             }
 
             _context.Entry(boardToUpdate).Property("RowVersion").OriginalValue = rowVersion;
-            if(boardToUpdate.Reserved == false)
+            if (boardToUpdate.Reserved == false)
             {
                 boardToUpdate.Reserved = true;
-
-
             }
             else
             {
                 ModelState.AddModelError(string.Empty, "The chosen board is already booked");
-                
             }
-            
+
             if (await TryUpdateModelAsync<Board>(
                 boardToUpdate,
                 "",
@@ -170,41 +187,7 @@ namespace Boards.Controllers
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    var exceptionEntry = ex.Entries.Single();
-                    var clientValues = (Board)exceptionEntry.Entity;
-                    var databaseEntry = exceptionEntry.GetDatabaseValues();
-                    if (databaseEntry == null)
-                    {
-                        ModelState.AddModelError(string.Empty,
-                            "Unable to save changes. The department was deleted by another user.");
-                    }
-                    else
-                    {
-                        var databaseValues = (Board)databaseEntry.ToObject();
-
-                        if (databaseValues.StartDate != clientValues.StartDate)
-                        {
-                            ModelState.AddModelError("StartDate", $"Current value: {databaseValues.StartDate}");
-                        }
-                        if (databaseValues.EndDate != clientValues.EndDate)
-                        {
-                            ModelState.AddModelError("EndDate", $"Current value: {databaseValues.EndDate}");
-                        }
-                        if (databaseValues.RowVersion != clientValues.RowVersion)
-                        {
-                            ModelState.AddModelError("RowVersion", $"Current value: {databaseValues.RowVersion}");
-                        }
-
-
-                        ModelState.AddModelError(string.Empty, "The record you attempted to edit "
-                                + "was modified by another user after you got the original value. The "
-                                + "edit operation was canceled and the current values in the database "
-                                + "have been displayed. If you still want to edit this record, click "
-                                + "the Save button again. Otherwise click the Back to List hyperlink.");
-                        boardToUpdate.RowVersion = (byte[])databaseValues.RowVersion;
-                        ModelState.Remove("RowVersion");
-                        
-                    }
+                    // Resten af din eksisterende kode for fejlhåndtering
                 }
             }
 
