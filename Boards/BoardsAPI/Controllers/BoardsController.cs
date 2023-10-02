@@ -89,15 +89,17 @@ namespace BoardsAPI.Controllers
         // POST: api/Boards
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Route("RentBoard/{id}")]
-        public async Task<ActionResult<Board>> RentBoard(int id)
+        [Route("RentBoard")]
+        public async Task<ActionResult<Board>> RentBoard(Board board)
         {
-            if (id == null)
+            if (board.ID == null)
             {
                 return NotFound();
             }
 
-            var boardToUpdate = await _context.Board.FirstOrDefaultAsync(m => m.ID == id);
+            var boardToUpdate = await _context.Board.FirstOrDefaultAsync(m => m.ID == board.ID);
+            boardToUpdate.StartDate = board.StartDate;
+            boardToUpdate.EndDate = board.EndDate;
 
             if (boardToUpdate == null)
             {

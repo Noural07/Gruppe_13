@@ -10,16 +10,18 @@ using Boards.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Text.Json;
 using Boards.Models;
+using System.Net.Http;
 
 namespace Boards.Controllers
 {
     public class ViewUserController : Controller
     {
         private readonly MvcBoardsContext _context;
+        private readonly HttpClient _httpClient = new HttpClient();
 
         public ViewUserController(MvcBoardsContext context)
         {
-            _context = context;
+            _context = context;   
         }
 
         // GET: ViewUser
@@ -95,66 +97,69 @@ namespace Boards.Controllers
 
             return View(board);
         }
-        public async Task<IActionResult> Rent(int? id)
-        {
-            // Create HttpClient
-            using HttpClient client = new HttpClient();
+        //public async Task<IActionResult> Rent(int? id)
+        //{
+        //    // Create HttpClient
+        //    using HttpClient client = new HttpClient();
 
-            // Send a POST request to the API
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7292/api/Boards/RentBoard");
-            // Get the response message from the API
-            var jsonresponse = await response.Content.ReadAsStringAsync();
+        //    // Send a POST request to the API
+        //    HttpResponseMessage response = await client.GetAsync($"https://localhost:7292/api/Boards/RentBoard");
+        //    // Get the response message from the API
+        //    var jsonresponse = await response.Content.ReadAsStringAsync();
 
-            var rootObject = JsonSerializer.Deserialize<Board>(jsonresponse);
-            // Update the local board entity (if necessary)
+        //    var rootObject = JsonSerializer.Deserialize<Board>(jsonresponse);
+        //    // Update the local board entity (if necessary)
            
-                await _context.SaveChangesAsync();
+        //        await _context.SaveChangesAsync();
 
                
 
-                // Return a view or message as needed
-                return View(response); // You may want to return a different view or message here
+        //        // Return a view or message as needed
+        //        return View(response); // You may want to return a different view or message here
             
            
-        }
-
-
-        //// GET: ViewUser/Edit/5
-        //public async Task<IActionResult> Rent(int? id)
-        //{
-
-        //    if (id == null || _context.Board == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var board = await _context.Board.FindAsync(id);
-        //    if (board == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    //else  
-        //    //        {
-        //    //            board.Reserved= true;
-        //    //            _context.SaveChanges();
-        //    //        }
-
-        //    return View(board);
-
         //}
+
+
+        // GET: ViewUser/Edit/5
+        public async Task<IActionResult> Rent(int? id)
+        {
+
+            if (id == null || _context.Board == null)
+            {
+                return NotFound();
+            }
+
+            var board = await _context.Board.FindAsync(id);
+            if (board == null)
+            {
+                return NotFound();
+            }
+            //else  
+            //        {
+            //            board.Reserved= true;
+            //            _context.SaveChanges();
+            //        }
+
+            return View(board);
+
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize] // Tilføj denne attribut for at kræve, at brugeren er logget ind
-        public async Task<IActionResult> Rent(int? id, byte[] rowVersion)
+        public async Task<IActionResult> Rent(int? id, byte[] rowVersion, Board board)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var boardToUpdate = await _context.Board.FirstOrDefaultAsync(m => m.ID == id);
+            string baseURL = "https://localhost:7071/api/Boards/RentBoard";
 
+            var boardToUpdate = await _context.Board.FirstOrDefaultAsync(m => m.ID == id);
+            boardToUpdate.StartDate = board.StartDate;
+            boardToUpdate.EndDate = board.EndDate;
             if (boardToUpdate == null)
             {
                 Board deletedBoard = new Board();
@@ -175,22 +180,22 @@ namespace Boards.Controllers
                 ModelState.AddModelError(string.Empty, "The chosen board is already booked");
             }
 
-            if (await TryUpdateModelAsync<Board>(
-                boardToUpdate,
-                "",
-                s => s.StartDate, s => s.EndDate, s => s.RowVersion))
-            {
+            
                 try
                 {
-                    await _context.SaveChangesAsync();
+                    //await _context.SaveChangesAsync();
+                    //var content = JsonSerializer.Serialize(board);
+                    //HttpContent httpContent = new StringContent(content, System.Text.Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await _httpClient.PostAsJsonAsync(baseURL, boardToUpdate);
+                    response.EnsureSuccessStatusCode();
+
                     return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
                     // Resten af din eksisterende kode for fejlhåndtering
                 }
-            }
-
+            
             return View(boardToUpdate);
         }
         private bool BoardExists(int id)
