@@ -11,6 +11,7 @@
           "EntityFramework": "6.4.4",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.22",
           "Microsoft.AspNetCore.Identity.UI": "6.0.21",
+          "Microsoft.AspNetCore.Mvc.Versioning": "5.1.0",
           "Microsoft.EntityFrameworkCore.Design": "6.0.21",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.21",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.21",
@@ -645,6 +646,14 @@
           "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll": {
             "assemblyVersion": "6.0.21.0",
             "fileVersion": "6.0.2123.36438"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Versioning/5.1.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.8270.41513"
           }
         }
       },
@@ -3061,6 +3070,13 @@
       "sha512": "sha512-DeRm3BQCMuoGKuMMWk8sLQn7zY/bMTP2fvEuOfA/0IAxAdyyO2oO7lMtYEGNja85mOsyWbOJl0g9/Qmj05g5kw==",
       "path": "microsoft.aspnetcore.identity.ui/6.0.21",
       "hashPath": "microsoft.aspnetcore.identity.ui.6.0.21.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.Versioning/5.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UX8w9BlCiZpr6Ox4YAve1w0CkI1CAovukGNzKd7v0+5pZc8lzuG5tRovucr1RWIKHs0E/Yx8563CN7KzaB3bpw==",
+      "path": "microsoft.aspnetcore.mvc.versioning/5.1.0",
+      "hashPath": "microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Language/6.0.0": {
       "type": "package",

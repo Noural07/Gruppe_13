@@ -34,7 +34,7 @@ namespace Boards
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            
+           
 
             services.AddDbContext<MvcBoardsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MvcBoardsContext")));

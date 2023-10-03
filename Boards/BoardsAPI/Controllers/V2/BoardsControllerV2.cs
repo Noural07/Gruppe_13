@@ -5,21 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BoardsAPI;
 using BoardsAPI.Model;
 using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Razor.Language;
 
-namespace BoardsAPI.Controllers
+namespace BoardsAPI.Controllers.V1
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BoardsController : ControllerBase
+    [ApiVersion("2.0")]
+    
+    public class BoardsControllerV2 : ControllerBase
     {
         private readonly BoardAPIContext _context;
 
-        public BoardsController(BoardAPIContext context)
+        public BoardsControllerV2(BoardAPIContext context)
         {
             _context = context;
         }
@@ -33,16 +34,16 @@ namespace BoardsAPI.Controllers
             return _context.Board.ToArray();
         }
 
-       
+
         [HttpGet("GetBoard/{id}")]
         public Board GetBoard(int id)
         {
 
             Board result = null;
-            
-           var resultOfFindMethod = _context.Board.Find(id);
 
-            if (id == resultOfFindMethod.ID) 
+            var resultOfFindMethod = _context.Board.Find(id);
+
+            if (id == resultOfFindMethod.ID)
             {
                 result = resultOfFindMethod;
                 return result;
@@ -111,7 +112,7 @@ namespace BoardsAPI.Controllers
                 return Ok(deletedBoard);
             }
 
-            
+
             if (boardToUpdate.Reserved == false)
             {
                 boardToUpdate.Reserved = true;
@@ -121,7 +122,7 @@ namespace BoardsAPI.Controllers
                 ModelState.AddModelError(string.Empty, "The chosen board is already booked");
             }
 
-            if (await TryUpdateModelAsync<Board>(
+            if (await TryUpdateModelAsync(
                 boardToUpdate,
                 "",
                 s => s.StartDate, s => s.EndDate))
@@ -129,7 +130,7 @@ namespace BoardsAPI.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
-                   
+
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {

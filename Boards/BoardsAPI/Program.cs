@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace BoardsAPI
 {
@@ -8,6 +9,11 @@ namespace BoardsAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddApiVersioning(option =>
+            {
+                option.AssumeDefaultVersionWhenUnspecified = true;
+                option.DefaultApiVersion = new ApiVersion(1, 0);
+            });
 
             builder.Services.AddDbContext<BoardAPIContext>(options => options
            .UseSqlServer(builder.Configuration.GetConnectionString("BoardAPIContext") ?? throw new InvalidOperationException("Connection string not found.")));

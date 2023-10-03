@@ -74,7 +74,7 @@ namespace Boards.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Board");
+                    b.ToTable("Board", (string)null);
                 });
 
             modelBuilder.Entity("Boards.Models.DefaultUser", b =>

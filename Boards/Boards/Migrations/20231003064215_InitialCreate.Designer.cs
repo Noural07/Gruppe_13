@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Boards.Migrations
 {
     [DbContext(typeof(MvcBoardsContext))]
-    [Migration("20231002100239_boardkeyadded")]
-    partial class boardkeyadded
+    [Migration("20231003064215_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,7 +76,7 @@ namespace Boards.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Board");
+                    b.ToTable("Board", (string)null);
                 });
 
             modelBuilder.Entity("Boards.Models.DefaultUser", b =>
