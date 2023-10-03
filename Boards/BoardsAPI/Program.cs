@@ -13,6 +13,13 @@ namespace BoardsAPI
             {
                 option.AssumeDefaultVersionWhenUnspecified = true;
                 option.DefaultApiVersion = new ApiVersion(1, 0);
+
+            });
+
+            builder.Services.AddVersionedApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
             });
 
             builder.Services.AddDbContext<BoardAPIContext>(options => options

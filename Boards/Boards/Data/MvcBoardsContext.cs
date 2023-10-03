@@ -17,10 +17,14 @@ namespace Boards.Data
         }
         public DbSet<Board> Board { get; set; } = default!;
 
+        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Board>().ToTable("Board");
+            
             base.OnModelCreating(modelBuilder);
-        }
+        }           
+
     }
 }

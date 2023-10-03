@@ -11573,23 +11573,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\007\\.nuget\\packages\\": {},
+    "C:\\Users\\Noureddin Bay\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\007\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Desktop\\GG 1333\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
+      "projectUniqueName": "C:\\Users\\Noureddin Bay\\Desktop\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
       "projectName": "Boards",
-      "projectPath": "C:\\Users\\007\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Desktop\\GG 1333\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
-      "packagesPath": "C:\\Users\\007\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\007\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Desktop\\GG 1333\\Gruppe_13\\Boards\\Boards\\obj\\",
+      "projectPath": "C:\\Users\\Noureddin Bay\\Desktop\\Gruppe_13\\Boards\\Boards\\Boards.csproj",
+      "packagesPath": "C:\\Users\\Noureddin Bay\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Noureddin Bay\\Desktop\\Gruppe_13\\Boards\\Boards\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\007\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Noureddin Bay\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -11598,7 +11598,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11673,7 +11672,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Text.Json;
 using Boards.Models;
 using System.Net.Http;
+using NuGet.Configuration;
 
 namespace Boards.Controllers
 {
@@ -97,28 +98,7 @@ namespace Boards.Controllers
 
             return View(board);
         }
-        //public async Task<IActionResult> Rent(int? id)
-        //{
-        //    // Create HttpClient
-        //    using HttpClient client = new HttpClient();
-
-        //    // Send a POST request to the API
-        //    HttpResponseMessage response = await client.GetAsync($"https://localhost:7292/api/Boards/RentBoard");
-        //    // Get the response message from the API
-        //    var jsonresponse = await response.Content.ReadAsStringAsync();
-
-        //    var rootObject = JsonSerializer.Deserialize<Board>(jsonresponse);
-        //    // Update the local board entity (if necessary)
-           
-        //        await _context.SaveChangesAsync();
-
-               
-
-        //        // Return a view or message as needed
-        //        return View(response); // You may want to return a different view or message here
-            
-           
-        //}
+       
 
 
         // GET: ViewUser/Edit/5
@@ -135,11 +115,7 @@ namespace Boards.Controllers
             {
                 return NotFound();
             }
-            //else  
-            //        {
-            //            board.Reserved= true;
-            //            _context.SaveChanges();
-            //        }
+     
 
             return View(board);
 
@@ -155,47 +131,28 @@ namespace Boards.Controllers
                 return NotFound();
             }
 
+
             string baseURL = "https://localhost:7071/api/Boards/RentBoard";
 
             var boardToUpdate = await _context.Board.FirstOrDefaultAsync(m => m.ID == id);
             boardToUpdate.StartDate = board.StartDate;
             boardToUpdate.EndDate = board.EndDate;
-            if (boardToUpdate == null)
-            {
-                Board deletedBoard = new Board();
-                await TryUpdateModelAsync(deletedBoard);
-                ModelState.AddModelError(string.Empty,
-                    "Unable to save changes. The department was deleted by another user.");
+           
 
-                return View(deletedBoard);
+
+            try
+            {
+              
+                HttpResponseMessage response = await _httpClient.PostAsJsonAsync(baseURL, boardToUpdate);
+                response.EnsureSuccessStatusCode();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                // Resten af din eksisterende kode for fejlhåndtering
             }
 
-            _context.Entry(boardToUpdate).Property("RowVersion").OriginalValue = rowVersion;
-            if (boardToUpdate.Reserved == false)
-            {
-                boardToUpdate.Reserved = true;
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "The chosen board is already booked");
-            }
-
-            
-                try
-                {
-                    //await _context.SaveChangesAsync();
-                    //var content = JsonSerializer.Serialize(board);
-                    //HttpContent httpContent = new StringContent(content, System.Text.Encoding.UTF8, "application/json");
-                    HttpResponseMessage response = await _httpClient.PostAsJsonAsync(baseURL, boardToUpdate);
-                    response.EnsureSuccessStatusCode();
-
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    // Resten af din eksisterende kode for fejlhåndtering
-                }
-            
             return View(boardToUpdate);
         }
         private bool BoardExists(int id)
