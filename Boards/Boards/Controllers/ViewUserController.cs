@@ -12,12 +12,16 @@ using System.Text.Json;
 using Boards.Models;
 using System.Net.Http;
 using NuGet.Configuration;
+using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace Boards.Controllers
 {
     public class ViewUserController : Controller
     {
+
         private readonly MvcBoardsContext _context;
+        private readonly SignInManager<DefaultUser> _signInManager;
         private readonly HttpClient _httpClient = new HttpClient();
 
         public ViewUserController(MvcBoardsContext context)
@@ -46,39 +50,67 @@ namespace Boards.Controllers
             }
 
             ViewData["CurrentFilter"] = searchString;
-            var Boards = from s in _context.Board
-                         select s;
+
+            var Boards = new List<Board>();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                string baseURL = "https://localhost:7071/api/Boards/GetAllBoards";
+
+                HttpResponseMessage response = await _httpClient.GetAsync(baseURL);
+                response.EnsureSuccessStatusCode();
+
+                // Read the response content as a string
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the JSON response into a list of Board objects
+                Boards = JsonConvert.DeserializeObject<List<Board>>(responseBody);
+            }
+            else
+            {
+                string baseURL = "https://localhost:7071/api/V2/Boards/GetAllBoardsWithNoEquipment";
+
+                HttpResponseMessage response = await _httpClient.GetAsync(baseURL);
+                response.EnsureSuccessStatusCode();
+
+                // Read the response content as a string
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the JSON response into a list of Board objects
+                Boards = JsonConvert.DeserializeObject<List<Board>>(responseBody);
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
-                Boards = Boards.Where(s => s.Equipment.Contains(searchString));
+                Boards = Boards.Where(s => s.Equipment.Contains(searchString)).ToList();
             }
             switch (sortOrder)
             {
                 case "Name_desc":
-                    Boards = Boards.OrderByDescending(s => s.Name);
+                    Boards = Boards.OrderByDescending(s => s.Name).ToList();
                     break;
                 case "Type_desc":
-                    Boards = Boards.OrderByDescending(s => s.Type);
+                    Boards = Boards.OrderByDescending(s => s.Type).ToList();
                     break;
                 case "Type":
-                    Boards = Boards.OrderBy(s => s.Type);
+                    Boards = Boards.OrderBy(s => s.Type).ToList();
                     break;
                 case "Length_desc":
-                    Boards = Boards.OrderByDescending(s => s.Length);
+                    Boards = Boards.OrderByDescending(s => s.Length).ToList();
                     break;
                 case "Length":
 
-                    Boards = Boards.OrderBy(s => s.Length);
+                    Boards = Boards.OrderBy(s => s.Length).ToList();
                     break;
                 default:
-                    Boards = Boards.OrderBy(s => s.Name);
+                    Boards = Boards.OrderBy(s => s.Name).ToList();
                     break;
 
             }
-            Boards = Boards.OrderBy(s => s.Reserved);
+
+            var filteredBoards = Boards.OrderBy(s => s.Reserved).ToList();
 
             int pageSize = 5;
-            return View(await PaginatedList<Board>.CreateAsync(Boards.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<Board>.CreateAsync(filteredBoards, pageNumber ?? 1, pageSize));
         }
 
         // GET: ViewUser/Details/5
@@ -123,7 +155,7 @@ namespace Boards.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize] // Tilføj denne attribut for at kræve, at brugeren er logget ind
+         // Tilføj denne attribut for at kræve, at brugeren er logget ind
         public async Task<IActionResult> Rent(int? id, byte[] rowVersion, Board board)
         {
             if (id == null)

@@ -74,7 +74,7 @@ namespace Boards.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("NotLogin", (string)null);
+                    b.ToTable("Board", (string)null);
                 });
 
             modelBuilder.Entity("Boards.Models.DefaultUser", b =>
